@@ -1,0 +1,187 @@
+﻿@model Tuple<X.PagedList.IPagedList<OpenCourseWareProject.Controllers.Course>, X.PagedList.IPagedList<OpenCourseWareProject.Controllers.MyCourses>>
+@using X.PagedList.Mvc;
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Title = "Dashboard";
+    ViewBag.Desc = "Dashboard";
+}
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <img src="/images/Dash (1).png">
+                    </div>
+                    <p class="card-category">Total Courses</p>
+                    <h3 class="card-title">
+                        @ViewBag.Count
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <img src="/images/Dash (2).png">
+                    </div>
+                    <p class="card-category">Active Courses</p>
+                    <h3 class="card-title">@ViewBag.Active</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                    <div class="card-icon">
+                        <img src="/images/Dash (3).png">
+                    </div>
+                    <p class="card-category">Archived</p>
+                    <h3 class="card-title">@ViewBag.Archived</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                        <img src="/images/D(4).png" style="width:65px">
+                    </div>
+                    <p class="card-category">Student Enroll</p>
+                    <h3 class="card-title">@ViewBag.Students</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Course Stats</h4>
+                    <p class="card-category">All courses stats</p>
+                </div>
+                <div class="card-body table-responsive">
+                    <div class="search-box" style="float:right">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <input type="text" name="currentFilter" value="@ViewBag.currentFilter" class="search-text form-control" placeholder="Search..." />
+                            </div>
+                            <button type="submit" class="btn btn-info">Search</button>
+                        </form>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.ActionLink("Course ID", "Dashboard", new { sortOrder = ViewBag.IdSortParm, currentFilter = ViewBag.CurrentFilter })
+                                @if(ViewBag.currentSort == "Id")
+                                    {
+                                        <a>
+                                            &#x25BC
+                                        </a>
+                                    }
+                                    @if(ViewBag.currentSort == "Id_desc")
+                                    {
+                                        <a>
+                                            &#x25B2
+                                        </a>
+                                    }
+                            </th>
+                            <th>
+                                @Html.ActionLink("Course Title", "Dashboard", new { sortOrder = ViewBag.TitleSortParm, currentFilter = ViewBag.CurrentFilter })
+                                @if(ViewBag.currentSort == "Title")
+                                    {
+                                        <a>
+                                            &#x25BC
+                                        </a>
+                                    }
+                                    @if(ViewBag.currentSort == "Title_desc")
+                                    {
+                                        <a>
+                                            &#x25B2
+                                        </a>
+                                    }
+                            </th>
+                            <th>
+                                @Html.ActionLink("Department", "Dashboard", new { sortOrder = ViewBag.DepartmentSortParm, currentFilter = ViewBag.CurrentFilter })
+                                @if(ViewBag.currentSort == "Department")
+                                    {
+                                        <a>
+                                            &#x25BC
+                                        </a>
+                                    }
+                                    @if(ViewBag.currentSort == "Department_desc")
+                                    {
+                                        <a>
+                                            &#x25B2
+                                        </a>
+                                    }
+                            </th>
+                            <th style="color:white">Students</th>
+                        </tr>
+                        <tbody>
+                            @if (Model.Item1.Count == 0)
+                            {
+                                <tr>
+                                    <td colspan="4">
+                                        No Record Found .....
+                                    </td>
+                                </tr>
+                            }
+                            @foreach (var item in Model.Item1)
+                            {
+                                ViewBag.StudentCount = 0;
+                                foreach (var item2 in Model.Item2)
+                                {
+                                    if (item.CId == item2.CId)
+                                    {
+                                        ViewBag.StudentCount = ViewBag.StudentCount + 1;
+                                    }
+                                }
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.CourseId)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CourseTitle)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Department)</td>
+                                    <td>@ViewBag.StudentCount</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @if (Model.Item1.PageCount > 1)
+                {
+                    <div class="pager">
+                        @Html.PagedListPager(Model.Item1, page => Url.Action("Table", new
+                        {
+                            page,
+                            sortOrder = ViewBag.currentSort,
+                            currentFilter = ViewBag.CurrentFilter
+                        }), X.PagedList.Mvc.Bootstrap4.Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+                        Page @(Model.Item1.PageCount < Model.Item1.PageNumber ? 0 : Model.Item1.PageNumber) of @Model.Item1.PageCount
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="float-left">
+                <ul>
+                    <li>
+                        <a href="https://www.creative-tim.com">
+                            Open CourseWare
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <script>
+        const x = new Date().getFullYear();
+        let date = document.getElementById('date');
+        date.innerHTML = '&copy; ' + x + date.innerHTML;</script>
+</div>

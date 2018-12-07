@@ -1,0 +1,142 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Title = "Dashboard";
+    ViewBag.Desc = "Dashboard";
+}
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <img src="1.png">
+                    </div>
+                    <p class="card-category">Total Courses</p>
+                    <h3 class="card-title">
+                        23
+                    </h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <a href="tables.html" class="primary-link">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <img src="2.png">
+                    </div>
+                    <p class="card-category">Active Courses</p>
+                    <h3 class="card-title">13</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <a href="tables.html"> Details </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                    <div class="card-icon">
+                        <img src="3.png">
+                    </div>
+                    <p class="card-category">Archived</p>
+                    <h3 class="card-title">10</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <a href="tables.html"> Details </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                        <img src="4.png">
+                    </div>
+                    <p class="card-category">Random item</p>
+                    <h3 class="card-title">21</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <a href="tables.html"> Details </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Course Stats</h4>
+                    <p class="card-category">All courses stats</p>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-warning">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Students</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>PRV</td>
+                                <td>CSE</td>
+                                <td>13</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>PRV</td>
+                                <td>CSE</td>
+                                <td>13</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>PRV</td>
+                                <td>CSE</td>
+                                <td>13</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>PRV</td>
+                                <td>CSE</td>
+                                <td>13</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="float-left">
+                <ul>
+                    <li>
+                        <a href="https://www.creative-tim.com">
+                            Open CourseWare
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <script>
+        const x = new Date().getFullYear();
+        let date = document.getElementById('date');
+        date.innerHTML = '&copy; ' + x + date.innerHTML;</script>
+</div>

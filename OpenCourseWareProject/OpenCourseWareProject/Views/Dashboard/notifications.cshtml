@@ -1,0 +1,92 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Title = "Notifications";
+    ViewBag.Desc = "Notifications";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Notifications</h4>
+            <p class="card-category">
+                All the course addition and modification notifications.
+            </p>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="card-title">General Notifications</h4> <br>
+                    <div class="alert alert-primary alert-with-icon" data-notify="container">
+                        <i class="material-icons" data-notify="icon">add_alert</i>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <span data-notify="message">The course "Software Engineering" was succesfully archieved.  </span>
+                    </div>
+                    <div class="alert alert-success alert-with-icon" data-notify="container">
+                        <i class="material-icons" data-notify="icon">add_alert</i>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <span data-notify="message">The course "Data Structure" was succesfully created. </span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="card-title">Emergency</h4> <br>
+
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <span>
+                            CS-607L is missing an assingment.
+                        </span>
+                    </div>
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <span>
+                            Software Engineering is offline!
+                        </span>
+                    </div>
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <span>
+                            We are all moving towards our certain death thinking we all have time but time is exactly what's killing us.
+                        </span>
+                    </div>
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <span>
+                            Memes are banned in Europe.
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="float-left">
+                <ul>
+                    <li>
+                        <a href="https://www.creative-tim.com">
+                            Open CourseWare
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <script>
+const x = new Date().getFullYear();
+        let date = document.getElementById('date');
+        date.innerHTML = '&copy; ' + x + date.innerHTML;</script>
+</div>

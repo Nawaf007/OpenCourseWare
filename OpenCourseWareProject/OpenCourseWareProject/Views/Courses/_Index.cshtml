@@ -1,0 +1,83 @@
+﻿@model IEnumerable<OpenCourseWareProject.Controllers.Course>
+@{ 
+    Layout = null;
+    ViewBag.Label = "Label";
+    ViewBag.Hash = "#";
+    ViewBag.E1 = "e1";
+    ViewBag.D1 = "d1";
+    ViewBag.Dt1 = "dt1";
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instructor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+@{ViewBag.Count1 = 0;}
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Instructor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=@ViewBag.Hash@ViewBag.E1@ViewBag.Count1 style="padding: 5px 15px;">
+                Edit
+            </button>
+            <div class="modal fade" id=@ViewBag.E1@ViewBag.Count1 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        @Html.Action("_Edit", "Courses", new { id = item.CId })
+                    </div>
+                </div>
+            </div> 
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=@ViewBag.Hash@ViewBag.Dt1@ViewBag.Count1 style="padding: 5px 15px;">
+                Details
+            </button>
+            <div class="modal fade" id=@ViewBag.Dt1@ViewBag.Count1 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        @Html.Action("_Details", "Courses", new { id = item.CId })
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=@ViewBag.Hash@ViewBag.D1@ViewBag.Count1 style="padding: 5px 15px;">
+                Delete
+            </button>
+            <div class="modal fade" id=@ViewBag.D1@ViewBag.Count1 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        @Html.Action("_Delete", "Courses", new { id = item.CId })
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    ViewBag.Count1 = ViewBag.Count1 + 1;
+}
+
+</table>

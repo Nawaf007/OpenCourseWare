@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Title = "Tables";
+    ViewBag.Desc = "Course List";
+    ViewBag.Click = 0;
+}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Courses</h4>
+                        <p class="card-category"> All the courses</p>
+                    </div>
+                    <div class="card-body">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Add course
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    @Html.Action("_Create", "Courses")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            @Html.Action("_Index", "Courses")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+
+                <br> <br>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example1Modal" style="margin: 0px 950px">
+                    Add Material
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="example1Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Course Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" style="color: black">Course ID</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Course ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1" style="color: black">Title</label>
+                                        <input type="Course Title" class="form-control" id="exampleInputPassword1" placeholder="Course Title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1" style="color: black"> Department </label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Department">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1" style="color: black">Instructor</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Instructor">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary"> Upload File </button>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Add File</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="float-left">
+                            <ul>
+                                <li>
+                                    <a href="https://www.creative-tim.com">
+                                        Open CourseWare
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                </footer>

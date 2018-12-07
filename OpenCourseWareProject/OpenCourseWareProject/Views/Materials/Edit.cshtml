@@ -1,0 +1,54 @@
+﻿@model OpenCourseWareProject.Controllers.Material
+
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Desc = "Edit Material";
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "Materials", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <br />
+        <h4 style="text-align:center; color: white; font-weight:bold"><b>Edit Material</b></h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MId)
+
+        <div class="form-group">
+            <div>
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2", style = "color: white; font-weight:bold" })
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", style = "color: white" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger", style = "color: white" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2", style = "color: white; font-weight:bold" })
+            </div>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Type, OpenCourseWareProject.Controllers.Material.GetTypeList(), htmlAttributes: new { @class = "control-label col-md-4", style = "color:black" })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger", style = "color: white" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.CId)
+        @Html.HiddenFor(model => model.FilePath)
+
+        <div>
+            <label for="file" class="control-label col-md-12">Upload Image:</label>
+            <input type="file" name="file" id="file" class="control-label col-md-12" />
+        </div>
+        <br />
+        <div class="modal-footer">
+            @Html.ActionLink("Cancel", "Table", "Materials", new {@id = Model.CId}, new { @class = "btn btn-secondary" })
+            <input type="submit" name="answer" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+}

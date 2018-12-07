@@ -1,0 +1,61 @@
+﻿@model IEnumerable<OpenCourseWareProject.Controllers.Material>
+@{ 
+    Layout = null;
+    ViewBag.Hash = "#";
+    ViewBag.E2 = "e2";
+    ViewBag.D2 = "d2";
+    ViewBag.Dt2 = "dt2";
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseId)
+        </th>
+        <th></th>
+    </tr>
+    @{ ViewBag.Count2 = 0;}
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseId)
+        </td>
+        <td>
+        <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=@ViewBag.Hash@ViewBag.E2@ViewBag.Count2 style="padding: 5px 15px;">
+                Edit
+            </button>
+            <div class="modal fade" id=@ViewBag.E2@ViewBag.Count2 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        @Html.Action("_Edit", "Materials", new { id = item.CId })
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=@ViewBag.Hash@ViewBag.D2@ViewBag.Count2 style="padding: 5px 15px;">
+                Delete
+            </button>
+            <div class="modal fade" id=@ViewBag.D2@ViewBag.Count2 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        @Html.Action("_Delete", "Materials", new { id = item.CId })
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    ViewBag.Count2 = ViewBag.Count2 + 1;
+}
+
+</table>

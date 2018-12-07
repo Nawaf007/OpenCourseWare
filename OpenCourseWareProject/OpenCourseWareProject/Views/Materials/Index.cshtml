@@ -1,0 +1,26 @@
+﻿@model IEnumerable<OpenCourseWareProject.Controllers.Material>
+
+@{
+    ViewBag.Title = ViewBag.Type;
+    ViewBag.Desc = ViewBag.Type;
+    ViewBag.Img = "Material";
+}
+<section class="site-section bg-light">
+    <div class="list-group">
+        @if (Model.Count() == 0)
+        {
+            <h3 style="text-align:center">
+                No Record Found.....
+            </h3>
+            <br />
+        }
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("Download", new { @path = item.FilePath})" class="list-group-item list-group-item-action flex-column align-items-start primary">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                </div>
+            </a>
+        }
+    </div>
+</section>

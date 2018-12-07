@@ -1,0 +1,57 @@
+﻿@model OpenCourseWareProject.Controllers.AspNetUser
+
+@{
+    ViewBag.Title = "AccountEdit";
+    ViewBag.Desc = "Edit Account";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>AccountEdit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br />
+        <h4 style="text-align:center; color: white; font-weight:bold"><b>Create Course</b></h4>
+        <hr />
+        @Html.HiddenFor(model => model.Id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div>
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12", style = "color: white; font-weight:bold" })
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", style = "color: white" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", style = "color: white" })
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.EmailConfirmed)
+        @Html.HiddenFor(model => model.PasswordHash)
+        @Html.HiddenFor(model => model.SecurityStamp)
+        @Html.HiddenFor(model => model.PhoneNumber)
+        @Html.HiddenFor(model => model.PhoneNumberConfirmed)
+        @Html.HiddenFor(model => model.TwoFactorEnabled)
+        @Html.HiddenFor(model => model.LockoutEndDateUtc)
+        @Html.HiddenFor(model => model.LockoutEnabled)
+        @Html.HiddenFor(model => model.AccessFailedCount)
+        @Html.HiddenFor(model => model.UserName)
+        <div class="form-group">
+            <div>
+                @Html.LabelFor(model => model.Admin, htmlAttributes: new { @class = "control-label col-md-12", style = "color: white; font-weight:bold" })
+            </div>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Admin, OpenCourseWareProject.Controllers.AspNetUser.GetAdminType(), htmlAttributes: new { @class = "control-label col-md-4", style = "color:black" })
+                @Html.ValidationMessageFor(model => model.Admin, "", new { @class = "text-danger", style = "color: white" })
+            </div>
+        </div>
+
+        <br />
+        <div class="modal-footer">
+            @Html.ActionLink("Cancel", "AccountIndex", "Account", new { @class = "btn btn-secondary" })
+            <input type="submit" name="answer" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+}
